@@ -22,28 +22,27 @@ app.post('/', function(req, res){
         //convert response string to json object
         let data = JSON.parse(response.body);
         let Bitcoin = parseFloat(req.body.Bitcoin);
-        let own;
+        let bitcoin_value;
         let price;
 
         if(currency === "EUR"){
             price = parseFloat(data.bpi.EUR.rate_float);
-            own = price*Bitcoin;
-            console.log(own);
-            own = Math.round(own);
-            console.log("Price in EUR ", own);
+            bitcoin_value = price*Bitcoin;
+            console.log(bitcoin_value);
+            bitcoin_value = Math.round(bitcoin_value);
+            console.log("Value in EUR ", bitcoin_value);
         } else {
             price = parseFloat(data.bpi.USD.rate_float);
-            own = price*Bitcoin;
-            console.log(own);
-            own = Math.round(own);
-            console.log("Price in USD ", own);
+            bitcoin_value = price*Bitcoin;
+            console.log(bitcoin_value);
+            bitcoin_value = Math.round(bitcoin_value);
+            console.log("Value in USD ", bitcoin_value);
         }
         
         let disclaimer = data.disclaimer;
-        res.write(`${disclaimer}`);
+        res.write(`${disclaimer}. `);
 
-        res.write('<br>');
-        res.write(`Current price in ${currency} is ${own}`);
+        res.write(`Current value in ${currency} is ${bitcoin_value}.`);
         res.send();
 
         
