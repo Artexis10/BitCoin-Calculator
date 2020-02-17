@@ -53,13 +53,6 @@ app.post('/', function(req, res){
 
 });
 
-let port = process.env.PORT;
-if (port == null || port == "") {
-  port = 8000;
-}
-app.listen(port);
-
-/*
 app.listen(process.env.port || 3000, function(){
     console.log("Server has started.");
 });
